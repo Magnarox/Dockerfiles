@@ -19,9 +19,9 @@ RUN apt-get install -y wine64-development-tools libwine-development-dev
 
 # Get VLC source
 RUN git clone https://github.com/videolan/vlc-2.2.git /home/vlc-2.2
-RUN chmod -R 777 /home/vlc-2.2
 WORKDIR "/home/vlc-2.2"
 RUN git checkout 2.2.8
+#RUN chmod -R 777 /home/vlc-2.2
 
 # Build contrib
 RUN mkdir -p /home/vlc-2.2/contrib/win32
