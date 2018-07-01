@@ -33,15 +33,20 @@ RUN chmod 777 vlc-contrib-x86_64-w64-mingw32-20160219.tar.bz2
 RUN make prebuilt
 RUN ln -sf 'x86_64-w64-mingw32' ../i686-w64-mingw32
 
-# Build vlc
-WORKDIR "/home/vlc-2.2"
-RUN ./bootstrap
-RUN mkdir win32 && cd win32 && export PKG_CONFIG_LIBDIR=/home/vlc-2.2/contrib/x86_64-w64-mingw32/lib/pkgconfig && ../extras/package/win32/configure.sh --host=x86_64-w64-mingw32 --build=x86_64-pc-linux-gnu
-WORKDIR "/home/vlc-2.2/win32"
-RUN make
-
 # Create volume to work on VLC
 VOLUME /home/vlc-2.2/win32
 
-CMD ["make", "package-win-common"]
+# Build vlc
+WORKDIR "/home/vlc-2.2"
+
+# Shell
+CMD ["/bin/bash"]
+
+
+# Launch in shell
+#./bootstrap
+#cd win32 && export PKG_CONFIG_LIBDIR=/home/vlc-2.2/contrib/x86_64-w64-mingw32/lib/pkgconfig && ../extras/package/win32/configure.sh --host=x86_64-w64-mingw32 --build=x86_64-pc-linux-gnu
+#make
+#make package-win-common
+
 
