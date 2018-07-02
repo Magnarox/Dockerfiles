@@ -1,6 +1,6 @@
 # Dockerfile vlc-2.2 for Windows 64bits
 1. Build docker image
-2. Run the new image with -v <local>:/home/vlc-2.2/win32 and -it options
+2. Run the new image with -v (local):/home/vlc-2.2/win32 and -it options
 3. In the shell launch :
 ./bootstrap
 
@@ -10,4 +10,4 @@ make
 
 make package-win-common
 
-4. VLC 2.2.8 for Wondows 64bits in <local>/vlc-2.2.8
+4. VLC 2.2.8 for Wondows 64bits in (local)/vlc-2.2.8
