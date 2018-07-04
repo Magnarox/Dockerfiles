@@ -1,4 +1,4 @@
-#Dockerfile to build VLC 2.8.0 for Windows 64bits
+#Dockerfile to build VLC 2.2.8 for Windows 64bits
 
 FROM ubuntu:16.04
 
@@ -17,36 +17,30 @@ RUN apt-get install -y lua5.2:i386
 RUN apt-get install -y qt4-dev-tools qt5-default
 RUN apt-get install -y wine64-development-tools libwine-development-dev
 
-# Get VLC source
-RUN git clone https://github.com/videolan/vlc-2.2.git /home/vlc-2.2
-WORKDIR "/home/vlc-2.2"
-RUN git checkout 2.2.8
-#RUN chmod -R 777 /home/vlc-2.2
-
-# Build contrib
-RUN mkdir -p /home/vlc-2.2/contrib/win32
-WORKDIR "/home/vlc-2.2/contrib/win32"
-RUN ../bootstrap --host=x86_64-w64-mingw32
-RUN sed -i -- 's/latest/20160219/g' Makefile
-COPY files/vlc-contrib-x86_64-w64-mingw32-20160219.tar.bz2 .
-RUN chmod 777 vlc-contrib-x86_64-w64-mingw32-20160219.tar.bz2
-RUN make prebuilt
-RUN ln -sf 'x86_64-w64-mingw32' ../i686-w64-mingw32
-
 # Create volume to work on VLC
-VOLUME /home/vlc-2.2/win32
+VOLUME /home/vlc-2.2
 
-# Build vlc
-WORKDIR "/home/vlc-2.2"
+# Add Prebuilt package
+COPY files/vlc-contrib-x86_64-w64-mingw32-20160219.tar.bz2 .
+
+# Add scripts
+COPY files/init_vlc_repo.sh .
+COPY files/build_vlc.sh .
+COPY files/package_vlc.sh .
+RUN chmod +x init_vlc_repo.sh && chmod +x build_vlc.sh && chmod +x package_vlc.sh
 
 # Shell
 CMD ["/bin/bash"]
 
+# Build dockerfile :
+# docker build <image_name> .
+# Start container :
+# docker run -v <local_dir>:/home/vlc-2.2 -it <image_name>
+#only the first time : ./init_vlc_repo.sh
+#build vlc : ./build_vlc.sh
+#package vlc: ./package_vlc.sh
 
-# Launch in shell
-#./bootstrap
-#cd win32 && export PKG_CONFIG_LIBDIR=/home/vlc-2.2/contrib/x86_64-w64-mingw32/lib/pkgconfig && ../extras/package/win32/configure.sh --host=x86_64-w64-mingw32 --build=x86_64-pc-linux-gnu
-#make
-#make package-win-common
+
+
 
 
