@@ -4,4 +4,4 @@
 3. Init vlc repo with : ./init_vlc_repo.sh
 4. Build vlc with : ./build_vlc.sh
 5. Package vlc with : ./package_vlc.sh
-6. VLC 2.2.8 for Wondows 64bits available here -> (local)/win32/vlc-2.2.8
+6. VLC 2.2.8 for Windows 64bits available here -> (local)/win32/vlc-2.2.8
