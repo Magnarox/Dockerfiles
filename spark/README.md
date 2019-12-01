@@ -16,7 +16,8 @@ Run `docker-builder.sh`
 
 Launch docker container and build distrib : 
 
-    docker run -v out:/spark/out/ spark-builder
+    docker run -it -v out:/spark/out/ spark-builder /bin/bash
+    > ./build-distrib.sh
 
 After a long time, build is in `out` directory.
     
