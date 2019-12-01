@@ -1,0 +1,6 @@
+repo/*
+!repo/.gitkeep
+
+out/*
+!out/.gitkeep
+
