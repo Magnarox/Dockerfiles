@@ -26,4 +26,4 @@ WORKDIR /spark/
 COPY ./build-distrib.sh /spark/
 RUN chmod 755 /spark/build-distrib.sh
 
-CMD ["/bin/bash"]
+CMD ["./build-distrib.sh"]
