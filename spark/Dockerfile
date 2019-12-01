@@ -19,7 +19,7 @@ RUN update-alternatives --install /usr/bin/pydoc pydoc /usr/local/bin/pydoc3.7 1
 # Add Spark 2.4.4 src
 COPY ./spark-2.4.4.tgz /tmp/
 RUN mkdir /spark/ && mkdir /spark/out/
-RUN chmod 755 /tmp/spark-2.4.4.tgz && tar -xzf /tmp/spark-2.4.4.tgz -C /spark/ && mkdir /spark/spark-2.4.4/dist/
+RUN chmod 755 /tmp/spark-2.4.4.tgz && tar -xzf /tmp/spark-2.4.4.tgz -C /spark/ 
 
 WORKDIR /spark/
 
