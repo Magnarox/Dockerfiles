@@ -22,12 +22,12 @@ RUN pip install --upgrade pip && pip install sphinx pypandoc mkdocs
 
 # Install R
 RUN apt install r-base libcurl4-openssl-dev libxml2-dev -y
-RUN Rscript -e 'install.packages(c("knitr", "devtools", "rmarkdown"), repos="https://cloud.r-project.org/")'
+RUN Rscript -e 'install.packages(c("knitr", "devtools", "rmarkdown", "e1071"), repos="https://cloud.r-project.org/")'
 RUN Rscript -e 'devtools::install_version("roxygen2", version = "5.0.1", repos="https://cloud.r-project.org/")'
 RUN Rscript -e 'devtools::install_version("testthat", version = "1.0.2", repos="https://cloud.r-project.org/")'
-RUN Rscript -e 'install.packages(c("e1071"), repos="https://cloud.r-project.org/")'
 
-RUN apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra -y
+# Install Docs Stuff
+RUN apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra qpdf -y
 
 # Add Spark 2.4.4 src
 COPY ./files/spark-2.4.4.tgz /tmp/
