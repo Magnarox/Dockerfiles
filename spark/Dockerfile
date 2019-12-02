@@ -27,6 +27,8 @@ RUN Rscript -e 'devtools::install_version("roxygen2", version = "5.0.1", repos="
 RUN Rscript -e 'devtools::install_version("testthat", version = "1.0.2", repos="https://cloud.r-project.org/")'
 RUN Rscript -e 'install.packages(c("e1071"), repos="https://cloud.r-project.org/")'
 
+RUN apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra -y
+
 # Add Spark 2.4.4 src
 COPY ./files/spark-2.4.4.tgz /tmp/
 RUN mkdir /spark/ && mkdir /spark/out/
