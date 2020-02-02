@@ -1,0 +1,14 @@
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: 192.168.0.32:29092
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties: {'sasl.mechanism': 'PLAIN','security.protocol': 'SASL_PLAINTEXT', 'sasl.jaas.config': 'org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-secret";'}
+    producer:
+      bootstrap-servers: 192.168.0.32:29092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties: {'sasl.mechanism': 'PLAIN','security.protocol': 'SASL_PLAINTEXT', 'sasl.jaas.config': 'org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-secret";'}
